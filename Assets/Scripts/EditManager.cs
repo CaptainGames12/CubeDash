@@ -1,11 +1,12 @@
 
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class EditManager : MonoBehaviour
 {
-    
+    [SerializeField] private TMP_Text _showingDepth;
     public InputActionReference deleteBlockAction;
     public InputActionReference mouseFOV;
     public GameObject addableBlock;
@@ -17,7 +18,8 @@ public class EditManager : MonoBehaviour
     private bool _blockIsCreating;
     void FixedUpdate()
     {
-        cameraDepth += Mathf.Clamp(mouseFOV.action.ReadValue<Vector2>().normalized.y * 5, -5f, 5f);
+        cameraDepth += Mathf.Clamp(mouseFOV.action.ReadValue<Vector2>().normalized.y, -1f, 1f);
+        _showingDepth.text = "Distance of mouse: " + cameraDepth.ToString();
         Vector3 posWithDepth = new(CameraManagerEditMode.ClampedMousePos().x, CameraManagerEditMode.ClampedMousePos().y, cameraDepth);
         worldPos = mainCamera.ScreenToWorldPoint(posWithDepth);
         if (Mouse.current.leftButton.isPressed)

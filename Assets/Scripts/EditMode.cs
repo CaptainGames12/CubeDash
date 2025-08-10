@@ -3,15 +3,16 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EditMode : MonoBehaviour
 {
     public List<Component> gameComponents;
     public List<GameObject> switchableEditObjects = new(3);
-
+    public TMP_Text meters;
     public GameObject player;
     public GameObject mainCamera;
-    public static bool isInEditMode = false;
+    public bool isInEditMode = false;
     private GameObject textOfButton;
     void Start()
     {
@@ -27,11 +28,12 @@ public class EditMode : MonoBehaviour
         
         if (!isInEditMode)
         {
+            
             SwitchValues(btnName: "Exit Edit Mode", viewDistanceOfCamera: 200);
         }
         else
         {
-
+            
             SwitchValues(btnName: "Enter Edit Mode", viewDistanceOfCamera: 60);
         }
 
@@ -46,7 +48,11 @@ public class EditMode : MonoBehaviour
         {
             component.enabled = !component.enabled;
         }
+        player.transform.position = new Vector3(0, 1.6f, 0);
+        meters.text = "0";
+        
         textOfButton.GetComponent<TMP_Text>().text = btnName;
+       
         mainCamera.GetComponent<Camera>().farClipPlane = viewDistanceOfCamera;
         isInEditMode = !isInEditMode;
         

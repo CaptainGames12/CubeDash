@@ -6,27 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class EditBlock : MonoBehaviour
 {
-
+  
     public EditManager _editManager;
     void Awake()
     {
-        Debug.Log(SceneManager.GetActiveScene().name);
+
         if (SceneManager.GetActiveScene().name == "LevelEditor")
         {
 
             enabled = true;
+
             foreach (var obj in Resources.FindObjectsOfTypeAll<EditManager>())
             {
                 _editManager = obj;
             }
-            
+
         }
         
     }
 
     void Start()
     {
-        LevelManager.OnSceneChanged.AddListener(DestroyBlock);
+        if (SceneManager.GetActiveScene().name != "LevelEditor")
+        {
+            enabled = false;
+        }
+        LevelManager.OnSceneChanged.AddListener(DestroyBlockOnSceneChange);
+        
     }
     void Update()
     {
@@ -46,9 +52,10 @@ public class EditBlock : MonoBehaviour
         _editManager.chosenBlock = null;
 
     }
-    public void DestroyBlock(string nextSceneName)
+    public void DestroyBlockOnSceneChange(string nextSceneName)
+
     {
-        if (gameObject.name != "Player" && nextSceneName!="LevelEditor")
+        if (nextSceneName != "LevelEditor")
         {
             Destroy(gameObject);
         }

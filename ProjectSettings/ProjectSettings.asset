@@ -761,10 +761,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 3f4e266c-0590-4c34-8782-80b84e01afae
+  cloudProjectId: 920c498a-ba4e-4401-a2b3-e9e4ce393f05
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BlockGame
+  projectName: CubeDash
   organizationId: vova-mazan
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

@@ -7,7 +7,14 @@ public class Exit : MonoBehaviour
 {
     public void ExitToMenu()
     {
+        SceneManager.sceneLoaded += OnMenuEntered;
         SceneManager.LoadScene("Menu");
-        LevelManager.OnSceneChanged.Invoke(SceneManager.GetActiveScene().name);
+        
     }
+    public void OnMenuEntered(Scene scene, LoadSceneMode mode)
+    {
+        LevelManager.OnSceneChanged.Invoke(scene.name);
+    }
+        
+    
 }

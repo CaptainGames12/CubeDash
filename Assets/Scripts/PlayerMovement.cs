@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _forwardSpeed;
     [SerializeField] private float _sidewaySpeed;
     [SerializeField] private Rigidbody _playerRb;
-    void FixedUpdate()
+    void Update()
     {
         _MoveCube();
     }
@@ -16,9 +16,10 @@ public class PlayerMovement : MonoBehaviour
     {
         float x_direction = _movementAction.action.ReadValue<Vector2>().x;
         float x = x_direction * _sidewaySpeed;
-        float z = _forwardSpeed * Time.deltaTime;
-        _playerRb.AddForce(0, 0, z);
-        _playerRb.AddForce(x, 0, 0, ForceMode.VelocityChange);
+        float z = _forwardSpeed;
+        float y = _playerRb.velocity.y;
+        _playerRb.velocity = new Vector3(x, y, z);
+        
         if (transform.position.y <= 0)
         {
             FindObjectOfType<GameManager>().EndGame();

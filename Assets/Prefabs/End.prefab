@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5064370771412890795}
   - component: {fileID: 748113620859835888}
   m_Layer: 8
-  m_Name: END
+  m_Name: End
   m_TagString: END
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -127,8 +127,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8614218875978724729}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94a92db7405a45b3ab298895df2cb4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _editManager: {fileID: 0}

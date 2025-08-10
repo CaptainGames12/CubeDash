@@ -17,12 +17,18 @@ public class LevelManager : MonoBehaviour
     public string path;
     public void Awake()
     {
+        
         path = Path.Combine(Application.persistentDataPath, "level.json");
-        Debug.Log(path);
+        OnSceneChanged.AddListener(DestroyBuildBlocks);
+       
     }
     public void SetLevelName()
     {
         levelName = inputField.text;
+    }
+    public void DestroyBuildBlocks(string nextSceneName)
+    {
+            
     }
     public void Save()
     {
@@ -37,18 +43,18 @@ public class LevelManager : MonoBehaviour
 
             if (LayerMask.LayerToName(buildBlock.layer) == "Persistant")
             {
-                Debug.Log(buildBlock.layer);
+
                 LevelObjectData levelObjectData = new(
                     buildBlock.transform.position,
                     buildBlock.transform.rotation,
                     buildBlock.tag
                     );
                 levelData.levelObjectDatas.Add(levelObjectData);
-                Debug.Log(levelObjectData.objectName);
+
             }
         }
         string json = JsonUtility.ToJson(levelData);
-        
+
         File.WriteAllText(path, json);
 
     }
